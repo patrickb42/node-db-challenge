@@ -36,15 +36,65 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var makeProjectsTable = function (knex) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, knex.schema.createTable('projects', function (tbl) {
+                tbl.increments();
+                tbl.string('name', 128)
+                    .notNullable();
+                tbl.string('description', 1000);
+                tbl.boolean('completed')
+                    .defaultTo(false);
+            })];
+    });
+}); };
+var makeResourcesTable = function (knex) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, knex.schema.createTable('resources', function (tbl) {
+                tbl.increments();
+                tbl.integer('project_id')
+                    .unsigned()
+                    .notNullable()
+                    .references('id')
+                    .inTable('projects');
+                tbl.string('name', 128)
+                    .notNullable();
+                tbl.string('description', 1000);
+            })];
+    });
+}); };
+var makeTasksTable = function (knex) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, knex.schema.createTable('tasks', function (tbl) {
+                tbl.increments();
+                tbl.integer('project_id')
+                    .unsigned()
+                    .notNullable()
+                    .references('id')
+                    .inTable('projects');
+                tbl.string('description', 1000)
+                    .notNullable();
+                tbl.string('notes', 5000);
+                tbl.boolean('completed')
+                    .defaultTo(false);
+            })];
+    });
+}); };
 function up(knex) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            return [2 /*return*/, knex.schema
-                    .createTable('thing', function (tbl) {
-                    tbl.increments();
-                }).createTable('other thing', function (tbl) {
-                    tbl.increments();
-                })];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, makeProjectsTable(knex)];
+                case 1:
+                    _a.sent();
+                    return [4 /*yield*/, makeResourcesTable(knex)];
+                case 2:
+                    _a.sent();
+                    return [4 /*yield*/, makeTasksTable(knex)];
+                case 3:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
         });
     });
 }
@@ -53,8 +103,9 @@ function down(knex) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, knex.schema
-                    .dropTableIfExists('thing')
-                    .dropTableIfExists('other thing')];
+                    .dropTableIfExists('tasks')
+                    .dropTableIfExists('resources')
+                    .dropTableIfExists('projects')];
         });
     });
 }
