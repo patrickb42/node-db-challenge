@@ -1,5 +1,5 @@
 import * as Knex from 'knex';
 
-import * as config from '../knexfile';
+import * as Config from '../knexfile';
 
-export default Knex(config.development);
+export default Knex(Config.development);

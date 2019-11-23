@@ -1,4 +1,4 @@
-import * as express from 'express';
+import * as Express from 'express';
 
 interface BasicTemplateArgs {
   dbOperation: (args: Object) => any,
@@ -20,7 +20,7 @@ const basicTemplate = ({
   operationFailureObject,
   opperationSuccessCode,
   operationErrorMessage,
-}: BasicTemplateArgs) => async (req: express.Request, res: express.Response) => {
+}: BasicTemplateArgs) => async (req: Express.Request, res: Express.Response) => {
   try {
     const result = await dbOperation(dbOperationArg);
     return (operationFailed(result))

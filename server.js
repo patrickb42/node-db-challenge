@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var helment = require("helmet");
-var server = express();
-server.use(helment());
-server.use(express.json());
+var Express = require("express");
+var Helmet = require("helmet");
+var server = Express();
+server.use(Helmet());
+server.use(Express.json());
 exports.default = server;

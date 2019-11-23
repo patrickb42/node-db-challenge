@@ -1,9 +1,9 @@
-import * as express from 'express';
-import * as helment from 'helmet';
+import * as Express from 'express';
+import * as Helmet from 'helmet';
 
-const server = express();
+const server = Express();
 
-server.use(helment());
-server.use(express.json());
+server.use(Helmet());
+server.use(Express.json());
 
 export default server;
