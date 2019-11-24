@@ -52,14 +52,26 @@ var makeResourcesTable = function (knex) { return __awaiter(void 0, void 0, void
     return __generator(this, function (_a) {
         return [2 /*return*/, knex.schema.createTable('resources', function (tbl) {
                 tbl.increments();
+                tbl.string('name', 128)
+                    .notNullable();
+                tbl.string('description', 1000);
+            })];
+    });
+}); };
+var makeProjectResourcePairingTable = function (knex) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        return [2 /*return*/, knex
+                .schema.createTable('project_resource_pairing', function (tbl) {
                 tbl.integer('project_id')
                     .unsigned()
                     .notNullable()
                     .references('id')
                     .inTable('projects');
-                tbl.string('name', 128)
-                    .notNullable();
-                tbl.string('description', 1000);
+                tbl.integer('resource_id')
+                    .unsigned()
+                    .notNullable()
+                    .references('id')
+                    .inTable('resources');
             })];
     });
 }); };
@@ -90,8 +102,11 @@ function up(knex) {
                     return [4 /*yield*/, makeResourcesTable(knex)];
                 case 2:
                     _a.sent();
-                    return [4 /*yield*/, makeTasksTable(knex)];
+                    return [4 /*yield*/, makeProjectResourcePairingTable(knex)];
                 case 3:
+                    _a.sent();
+                    return [4 /*yield*/, makeTasksTable(knex)];
+                case 4:
                     _a.sent();
                     return [2 /*return*/];
             }
@@ -104,6 +119,7 @@ function down(knex) {
         return __generator(this, function (_a) {
             return [2 /*return*/, knex.schema
                     .dropTableIfExists('tasks')
+                    .dropTableIfExists('project_resource_pairing')
                     .dropTableIfExists('resources')
                     .dropTableIfExists('projects')];
         });
