@@ -36,7 +36,7 @@ exports.basicTemplate = function (_a) {
         get: get,
         insert: insert,
         update: update,
-        remove: remove
+        remove: remove,
     };
 };
 exports.default = { basicTemplate: exports.basicTemplate };

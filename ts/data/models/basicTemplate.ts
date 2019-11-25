@@ -50,7 +50,7 @@ export const basicTemplate = <T>({ tableName }: ModelTemplateArg) => {
     get,
     insert,
     update,
-    remove
+    remove,
   };
 };
 

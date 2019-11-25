@@ -2,11 +2,11 @@ import * as Express from 'express';
 
 export interface Project {
   id?: number,
-  name: string,
+  name?: string,
   description?: string,
   completed?: boolean,
-  tasks?: [],
-  resources?: [],
+  tasks?: [Task],
+  resources?: [Resource],
 }
 
 export interface ValidatedProjectRequest extends Express.Request {
@@ -15,7 +15,7 @@ export interface ValidatedProjectRequest extends Express.Request {
 
 export interface Resource {
   id?: number,
-  name: string,
+  name?: string,
   description?: string,
 }
 
@@ -25,7 +25,7 @@ export interface ValidatedResourceRequest extends Express.Request {
 
 export interface Task {
   id?: number,
-  description: string,
+  description?: string,
   notes?: string,
   completed?: boolean,
 }

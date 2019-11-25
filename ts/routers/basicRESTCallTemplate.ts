@@ -1,6 +1,6 @@
 import * as Express from 'express';
 
-interface BasicTemplateArgs {
+interface BasicRESTCallTemplateArg {
   dbOperation: (args: Object) => any,
   dbOperationArg?: Object,
   operationFailed: (args: Object) => boolean,
@@ -12,7 +12,7 @@ interface BasicTemplateArgs {
   operationErrorMessage: string,
 }
 
-const basicTemplate = ({
+const basicRESTCallTemplate = ({
   dbOperation,
   dbOperationArg = {},
   operationFailed,
@@ -20,7 +20,7 @@ const basicTemplate = ({
   operationFailureObject,
   opperationSuccessCode,
   operationErrorMessage,
-}: BasicTemplateArgs) => async (req: Express.Request, res: Express.Response) => {
+}: BasicRESTCallTemplateArg) => async (req: Express.Request, res: Express.Response) => {
   try {
     const result = await dbOperation(dbOperationArg);
     return (operationFailed(result))
@@ -34,4 +34,4 @@ const basicTemplate = ({
   }
 };
 
-export { basicTemplate };
+export { basicRESTCallTemplate };
