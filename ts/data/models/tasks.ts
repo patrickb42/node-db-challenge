@@ -4,10 +4,10 @@ import { convertObjectCamelToSnake, convertObjectSnakeToCamel } from '../../util
 
 export default basicTemplate<Task>({
   tableName: 'tasks',
-  preprocessData: (data) => convertObjectCamelToSnake(data),
+  preprocessData: (data) => convertObjectCamelToSnake({ obj: data }),
   processResult: (result) => {
     return {
-      ...convertObjectSnakeToCamel(result),
+      ...convertObjectSnakeToCamel({ obj: result }),
       completed: !!result.completed,
     };
   },
