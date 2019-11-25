@@ -7,4 +7,4 @@ exports.validateProject = function (req, res, next) {
         ? res.status(400).json({ message: 'Projects must have a name' })
         : next();
 };
-exports.default = { validateProject: exports.validateProject };
+exports.default = {};

@@ -2,7 +2,7 @@ import * as Express from 'express';
 
 import { Resource, ValidatedResourceRequest } from '../types';
 
-export const validateProject = (
+export const validateResource = (
   req: ValidatedResourceRequest,
   res: Express.Response,
   next: Express.NextFunction,
@@ -15,4 +15,4 @@ export const validateProject = (
     : next();
 };
 
-export default { validateProject };
+export default {};

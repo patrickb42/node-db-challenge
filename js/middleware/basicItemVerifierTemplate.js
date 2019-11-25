@@ -36,45 +36,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var dbConfig_1 = require("../dbConfig");
-exports.basicTemplate = function (_a) {
-    var tableName = _a.tableName, _b = _a.processData, processData = _b === void 0 ? function (data) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-        return [2 /*return*/, data];
-    }); }); } : _b;
-    var get = function (_a) {
-        var id = (_a === void 0 ? {} : _a).id;
-        return (id === undefined)
-            ? dbConfig_1.default(tableName)
-                .then(function (data) { return data.map(processData); })
-            : dbConfig_1.default(tableName)
-                .where('id', id)
-                .then(function (data) { return processData(data); });
-    };
-    var insert = function (_a) {
-        var item = _a.item;
-        return dbConfig_1.default(tableName)
-            .insert(item)
-            .first()
-            .then(function (id) { return get({ id: id }); });
-    };
-    var update = function (_a) {
-        var id = _a.id, changes = _a.changes;
-        return dbConfig_1.default(tableName)
-            .where('id', id)
-            .update(changes)
-            .then(function (count) { return (count > 0 ? get({ id: id }) : null); });
-    };
-    var remove = function (_a) {
-        var id = _a.id;
-        return dbConfig_1.default(tableName)
-            .where('id', id)
-            .del();
-    };
-    return {
-        get: get,
-        insert: insert,
-        update: update,
-        remove: remove,
-    };
+exports.basicItemVerifierTemplate = function (_a) {
+    var itemName = _a.itemName, getItemFromDb = _a.getItemFromDb;
+    return function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+        var id, result, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    id = req.params.id;
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, getItemFromDb({ id: id })];
+                case 2:
+                    result = _a.sent();
+                    if (result.length === 0) {
+                        return [2 /*return*/, res.status(404).json({ message: "no " + itemName + " found under id " + id })];
+                    }
+                    req[itemName] = result;
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    return [2 /*return*/, res.status(500).json({
+                            message: error_1.message,
+                            error: "error getting " + itemName + " by id " + id,
+                        })];
+                case 4: return [2 /*return*/, next()];
+            }
+        });
+    }); };
 };
 exports.default = {};

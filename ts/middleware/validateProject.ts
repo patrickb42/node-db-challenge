@@ -15,4 +15,4 @@ export const validateProject = (
     : next();
 };
 
-export default { validateProject };
+export default {};
