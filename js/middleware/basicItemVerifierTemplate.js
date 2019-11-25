@@ -50,7 +50,7 @@ exports.basicItemVerifierTemplate = function (_a) {
                     return [4 /*yield*/, getItemFromDb({ id: id })];
                 case 2:
                     result = _a.sent();
-                    if (result.length === 0) {
+                    if (result === undefined || result.length === 0) {
                         return [2 /*return*/, res.status(404).json({ message: "no " + itemName + " found under id " + id })];
                     }
                     req[itemName] = result;

@@ -36,7 +36,7 @@ export const basicCRUDRouteTemplate = ({
   const post = (req: Express.Request, res: Express.Response) => {
     basicRESTCallTemplate({
       dbOperation: basicModel.insert,
-      dbOperationArg: { [itemName]: req[itemName] },
+      dbOperationArg: { item: req[itemName] },
       operationFailed: (result) => (result === undefined),
       operationFailureCode: 500,
       operationFailureObject: { message: `${itemName} not added due to server error` },

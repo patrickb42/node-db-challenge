@@ -17,10 +17,11 @@ export const basicTemplate = <T>({
   const get = ({ id }: GetArg = {}) => {
     return (id === undefined)
       ? db(tableName)
-        .then((data) => data.map(processData))
+        .then((data) => (data !== undefined ? data.map(processData) : undefined))
       : db(tableName)
         .where('id', id)
-        .then((data) => processData(data));
+        .first()
+        .then((data) => (data !== undefined ? processData(data) : undefined));
   };
 
 
@@ -30,8 +31,11 @@ export const basicTemplate = <T>({
 
   const insert = ({ item }: InsertArg) => db(tableName)
     .insert(item)
-    .first()
-    .then((id) => get({ id }));
+    .then((id) => {
+      console.log(id);
+      return id;
+    })
+    .then(([id]) => get({ id }));
 
 
   interface UpdateArg {

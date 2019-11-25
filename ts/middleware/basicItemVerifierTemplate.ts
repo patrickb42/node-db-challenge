@@ -18,7 +18,7 @@ export const basicItemVerifierTemplate = ({
 
   try {
     const result = await getItemFromDb({ id });
-    if (result.length === 0) {
+    if (result === undefined || result.length === 0) {
       return res.status(404).json({ message: `no ${itemName} found under id ${id}` });
     }
     req[itemName] = result;

@@ -2,7 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Express = require("express");
 var Helmet = require("helmet");
+var routers_1 = require("./routers");
 var server = Express();
 server.use(Helmet());
 server.use(Express.json());
+server.use('/api/projects', routers_1.projectsRouter);
+server.use('/api/resources', routers_1.resourcesRouter);
+server.use('/api/tasks', routers_1.tasksRouter);
 exports.default = server;

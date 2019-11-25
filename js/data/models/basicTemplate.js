@@ -45,17 +45,24 @@ exports.basicTemplate = function (_a) {
         var id = (_a === void 0 ? {} : _a).id;
         return (id === undefined)
             ? dbConfig_1.default(tableName)
-                .then(function (data) { return data.map(processData); })
+                .then(function (data) { return (data !== undefined ? data.map(processData) : undefined); })
             : dbConfig_1.default(tableName)
                 .where('id', id)
-                .then(function (data) { return processData(data); });
+                .first()
+                .then(function (data) { return (data !== undefined ? processData(data) : undefined); });
     };
     var insert = function (_a) {
         var item = _a.item;
         return dbConfig_1.default(tableName)
             .insert(item)
-            .first()
-            .then(function (id) { return get({ id: id }); });
+            .then(function (id) {
+            console.log(id);
+            return id;
+        })
+            .then(function (_a) {
+            var id = _a[0];
+            return get({ id: id });
+        });
     };
     var update = function (_a) {
         var id = _a.id, changes = _a.changes;

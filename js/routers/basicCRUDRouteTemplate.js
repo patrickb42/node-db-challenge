@@ -19,10 +19,9 @@ exports.basicCRUDRouteTemplate = function (_a) {
     var getById = function (req, res) { return res
         .status(200).json(req[itemName]); };
     var post = function (req, res) {
-        var _a;
         basicRESTCallTemplate_1.basicRESTCallTemplate({
             dbOperation: basicModel.insert,
-            dbOperationArg: (_a = {}, _a[itemName] = req[itemName], _a),
+            dbOperationArg: { item: req[itemName] },
             operationFailed: function (result) { return (result === undefined); },
             operationFailureCode: 500,
             operationFailureObject: { message: itemName + " not added due to server error" },
