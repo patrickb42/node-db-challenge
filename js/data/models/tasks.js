@@ -12,9 +12,11 @@ var __assign = (this && this.__assign) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var basicTemplate_1 = require("./basicTemplate");
+var utils_1 = require("../../utils");
 exports.default = basicTemplate_1.basicTemplate({
-    tableName: 'task',
-    processData: function (data) {
-        return __assign(__assign({}, data), { completed: !!data.completed });
+    tableName: 'tasks',
+    preprocessData: function (data) { return utils_1.convertObjectCamelToSnake(data); },
+    processResult: function (result) {
+        return __assign(__assign({}, utils_1.convertObjectSnakeToCamel(result)), { completed: !!result.completed });
     },
 });

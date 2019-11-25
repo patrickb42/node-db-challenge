@@ -7,11 +7,22 @@ export const validateTask = (
   res: Express.Response,
   next: Express.NextFunction,
 ) => {
-  const { description, notes, completed }: Task = req.body;
+  const {
+    projectId,
+    description,
+    notes,
+    completed,
+  }: Task = req.body;
 
-  req.task = { description, notes, completed };
-  return (description === undefined)
-    ? res.status(400).json({ message: 'Tasks must have a description' })
+  req.task = {
+    projectId,
+    description,
+    notes,
+    completed,
+  };
+  return (projectId === undefined
+          || description === undefined)
+    ? res.status(400).json({ message: 'Tasks must have a projectId and description' })
     : next();
 };
 

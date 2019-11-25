@@ -38,25 +38,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var dbConfig_1 = require("../dbConfig");
 exports.basicTemplate = function (_a) {
-    var tableName = _a.tableName, _b = _a.processData, processData = _b === void 0 ? function (data) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    var tableName = _a.tableName, _b = _a.preprocessData, preprocessData = _b === void 0 ? function (data) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
         return [2 /*return*/, data];
-    }); }); } : _b;
+    }); }); } : _b, _c = _a.processResult, processResult = _c === void 0 ? function (result) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+        return [2 /*return*/, result];
+    }); }); } : _c;
     var get = function (_a) {
         var id = (_a === void 0 ? {} : _a).id;
         return (id === undefined)
             ? dbConfig_1.default(tableName)
-                .then(function (data) { return (data !== undefined ? data.map(processData) : undefined); })
+                .then(function (data) { return (data !== undefined ? data.map(processResult) : undefined); })
             : dbConfig_1.default(tableName)
                 .where('id', id)
                 .first()
-                .then(function (data) { return (data !== undefined ? processData(data) : undefined); });
+                .then(function (data) { return (data !== undefined ? processResult(data) : undefined); });
     };
     var insert = function (_a) {
         var item = _a.item;
         return dbConfig_1.default(tableName)
-            .insert(item)
+            .insert(preprocessData(item))
             .then(function (id) {
-            console.log(id);
             return id;
         })
             .then(function (_a) {
@@ -68,7 +69,7 @@ exports.basicTemplate = function (_a) {
         var id = _a.id, changes = _a.changes;
         return dbConfig_1.default(tableName)
             .where('id', id)
-            .update(changes)
+            .update(preprocessData(changes))
             .then(function (count) { return (count > 0 ? get({ id: id }) : null); });
     };
     var remove = function (_a) {

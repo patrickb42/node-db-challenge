@@ -25,6 +25,7 @@ export interface ValidatedResourceRequest extends Express.Request {
 
 export interface Task {
   id?: number,
+  projectId?: number,
   description?: string,
   notes?: string,
   completed?: boolean,

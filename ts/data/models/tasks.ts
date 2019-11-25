@@ -1,12 +1,14 @@
 import { Task } from '../../types';
 import { basicTemplate } from './basicTemplate';
+import { convertObjectCamelToSnake, convertObjectSnakeToCamel } from '../../utils';
 
 export default basicTemplate<Task>({
-  tableName: 'task',
-  processData: (data) => {
+  tableName: 'tasks',
+  preprocessData: (data) => convertObjectCamelToSnake(data),
+  processResult: (result) => {
     return {
-      ...data,
-      completed: !!data.completed,
+      ...convertObjectSnakeToCamel(result),
+      completed: !!result.completed,
     };
   },
 });
