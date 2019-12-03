@@ -9,5 +9,4 @@ exports.convertObjectCamelToSnake = function (_a) {
         return acc;
     }, {});
 };
-;
 exports.default = {};

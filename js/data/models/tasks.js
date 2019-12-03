@@ -16,7 +16,5 @@ var utils_1 = require("../../utils");
 exports.default = basicTemplate_1.basicTemplate({
     tableName: 'tasks',
     preprocessData: function (data) { return utils_1.convertObjectCamelToSnake({ obj: data }); },
-    processResult: function (result) {
-        return __assign(__assign({}, utils_1.convertObjectSnakeToCamel({ obj: result })), { completed: !!result.completed });
-    },
+    processResult: function (result) { return (__assign(__assign({}, utils_1.convertObjectSnakeToCamel({ obj: result })), { completed: !!result.completed })); },
 });

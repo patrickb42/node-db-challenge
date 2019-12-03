@@ -16,15 +16,13 @@ export const basicTemplate = <T>({
     id?: number;
   }
 
-  const get = ({ id }: GetArg = {}) => {
-    return (id === undefined)
-      ? db(tableName)
-        .then((data) => (data !== undefined ? data.map(processResult) : undefined))
-      : db(tableName)
-        .where('id', id)
-        .first()
-        .then((data) => (data !== undefined ? processResult(data) : undefined));
-  };
+  const get = ({ id }: GetArg = {}) => ((id === undefined)
+    ? db(tableName)
+      .then((data) => (data !== undefined ? data.map(processResult) : undefined))
+    : db(tableName)
+      .where('id', id)
+      .first()
+      .then((data) => (data !== undefined ? processResult(data) : undefined)));
 
 
   interface InsertArg {
@@ -33,9 +31,6 @@ export const basicTemplate = <T>({
 
   const insert = ({ item }: InsertArg) => db(tableName)
     .insert(preprocessData(item))
-    .then((id) => {
-      return id;
-    })
     .then(([id]) => get({ id }));
 
 

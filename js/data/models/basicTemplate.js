@@ -45,21 +45,18 @@ exports.basicTemplate = function (_a) {
     }); }); } : _c;
     var get = function (_a) {
         var id = (_a === void 0 ? {} : _a).id;
-        return (id === undefined)
+        return ((id === undefined)
             ? dbConfig_1.default(tableName)
                 .then(function (data) { return (data !== undefined ? data.map(processResult) : undefined); })
             : dbConfig_1.default(tableName)
                 .where('id', id)
                 .first()
-                .then(function (data) { return (data !== undefined ? processResult(data) : undefined); });
+                .then(function (data) { return (data !== undefined ? processResult(data) : undefined); }));
     };
     var insert = function (_a) {
         var item = _a.item;
         return dbConfig_1.default(tableName)
             .insert(preprocessData(item))
-            .then(function (id) {
-            return id;
-        })
             .then(function (_a) {
             var id = _a[0];
             return get({ id: id });
