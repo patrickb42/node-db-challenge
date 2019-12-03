@@ -9,6 +9,6 @@ export const convertObjectCamelToSnake = ({ obj }: ConvertObjectCamelToSnakeArg)
   .keys(obj).reduce((acc, key) => {
     acc[camelCaseToSnakeCase({ string: key })] = obj[key];
     return acc;
-  }, {});;
+  }, {});
 
 export default {};
