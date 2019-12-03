@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Express = require("express");
 var basicRESTCallTemplate_1 = require("./basicRESTCallTemplate");
-var router = Express.Router();
 exports.basicCRUDRouteTemplate = function (_a) {
     var basicModel = _a.basicModel, itemName = _a.itemName, itemValidator = _a.itemValidator, itemIdVerifier = _a.itemIdVerifier;
+    var router = Express.Router();
     var get = function (req, res) {
         basicRESTCallTemplate_1.basicRESTCallTemplate({
             dbOperation: basicModel.get,

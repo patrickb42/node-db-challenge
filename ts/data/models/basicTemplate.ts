@@ -18,6 +18,10 @@ export const basicTemplate = <T>({
 
   const get = ({ id }: GetArg = {}) => ((id === undefined)
     ? db(tableName)
+      .then((data) => {
+        console.log(tableName);
+        return data;
+      })
       .then((data) => (data !== undefined ? data.map(processResult) : undefined))
     : db(tableName)
       .where('id', id)

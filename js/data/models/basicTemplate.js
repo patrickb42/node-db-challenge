@@ -47,6 +47,10 @@ exports.basicTemplate = function (_a) {
         var id = (_a === void 0 ? {} : _a).id;
         return ((id === undefined)
             ? dbConfig_1.default(tableName)
+                .then(function (data) {
+                console.log(tableName);
+                return data;
+            })
                 .then(function (data) { return (data !== undefined ? data.map(processResult) : undefined); })
             : dbConfig_1.default(tableName)
                 .where('id', id)

@@ -2,9 +2,6 @@ import * as Express from 'express';
 
 import { basicRESTCallTemplate } from './basicRESTCallTemplate';
 
-
-const router = Express.Router();
-
 interface BasicCRUDRouteTemapleArg {
   basicModel,
   itemName: string,
@@ -18,6 +15,8 @@ export const basicCRUDRouteTemplate = ({
   itemValidator,
   itemIdVerifier,
 }: BasicCRUDRouteTemapleArg) => {
+  const router = Express.Router();
+
   const get = (req: Express.Request, res: Express.Response) => {
     basicRESTCallTemplate({
       dbOperation: basicModel.get,
