@@ -28,6 +28,10 @@ const makeProjectResourcePairingTable = async (knex: Knex) => knex
       .notNullable()
       .references('id')
       .inTable('resources');
+    tbl.primary([
+      'project_id',
+      'resource_id',
+    ]);
   });
 
 const makeTasksTable = async (knex: Knex) => knex.schema.createTable('tasks', (tbl) => {
