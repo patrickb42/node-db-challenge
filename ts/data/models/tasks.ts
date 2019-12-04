@@ -1,8 +1,8 @@
 import { Task } from '../../types';
-import { basicTemplate } from './basicTemplate';
+import { basicModelTemplate } from './basicModelTemplate';
 import { convertObjectCamelToSnake, convertObjectSnakeToCamel } from '../../utils';
 
-export default basicTemplate<Task>({
+export default basicModelTemplate<Task>({
   tableName: 'tasks',
   preprocessData: (data) => convertObjectCamelToSnake({ obj: data }),
   processResult: (result) => ({

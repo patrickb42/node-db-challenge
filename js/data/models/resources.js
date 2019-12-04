@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var basicTemplate_1 = require("./basicTemplate");
-exports.default = basicTemplate_1.basicTemplate({
+var basicModelTemplate_1 = require("./basicModelTemplate");
+exports.default = basicModelTemplate_1.basicModelTemplate({
     tableName: 'resources',
 });

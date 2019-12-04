@@ -7,7 +7,7 @@ interface ModelTemplateArg {
   processResult?: (result) => any,
 }
 
-export const basicTemplate = <T>({
+export const basicModelTemplate = <T>({
   tableName,
   preprocessData = async (data) => data,
   processResult = async (result) => result,

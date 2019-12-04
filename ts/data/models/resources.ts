@@ -1,6 +1,6 @@
 import { Resource } from '../../types';
-import { basicTemplate } from './basicTemplate';
+import { basicModelTemplate } from './basicModelTemplate';
 
-export default basicTemplate<Resource>({
+export default basicModelTemplate<Resource>({
   tableName: 'resources',
 });

@@ -11,9 +11,9 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var basicTemplate_1 = require("./basicTemplate");
+var basicModelTemplate_1 = require("./basicModelTemplate");
 var utils_1 = require("../../utils");
-exports.default = basicTemplate_1.basicTemplate({
+exports.default = basicModelTemplate_1.basicModelTemplate({
     tableName: 'projects',
     preprocessData: function (data) { return utils_1.convertObjectCamelToSnake({ obj: data }); },
     processResult: function (result) { return (__assign(__assign({}, utils_1.convertObjectSnakeToCamel({ obj: result })), { completed: !!result.completed })); },
