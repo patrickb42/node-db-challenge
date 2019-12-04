@@ -58,10 +58,10 @@ var makeResourcesTable = function (knex) { return __awaiter(void 0, void 0, void
             })];
     });
 }); };
-var makeProjectResourcePairingTable = function (knex) { return __awaiter(void 0, void 0, void 0, function () {
+var makeProjectsResourcesTable = function (knex) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         return [2 /*return*/, knex
-                .schema.createTable('project_resource_pairing', function (tbl) {
+                .schema.createTable('projects_resources', function (tbl) {
                 tbl.integer('project_id')
                     .unsigned()
                     .notNullable()
@@ -106,7 +106,7 @@ function up(knex) {
                     return [4 /*yield*/, makeResourcesTable(knex)];
                 case 2:
                     _a.sent();
-                    return [4 /*yield*/, makeProjectResourcePairingTable(knex)];
+                    return [4 /*yield*/, makeProjectsResourcesTable(knex)];
                 case 3:
                     _a.sent();
                     return [4 /*yield*/, makeTasksTable(knex)];

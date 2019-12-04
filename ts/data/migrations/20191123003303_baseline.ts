@@ -16,8 +16,8 @@ const makeResourcesTable = async (knex: Knex) => knex.schema.createTable('resour
   tbl.string('description', 1000);
 });
 
-const makeProjectResourcePairingTable = async (knex: Knex) => knex
-  .schema.createTable('project_resource_pairing', (tbl) => {
+const makeProjectsResourcesTable = async (knex: Knex) => knex
+  .schema.createTable('projects_resources', (tbl) => {
     tbl.integer('project_id')
       .unsigned()
       .notNullable()
@@ -52,7 +52,7 @@ const makeTasksTable = async (knex: Knex) => knex.schema.createTable('tasks', (t
 export async function up(knex: Knex): Promise<any> {
   await makeProjectsTable(knex);
   await makeResourcesTable(knex);
-  await makeProjectResourcePairingTable(knex);
+  await makeProjectsResourcesTable(knex);
   await makeTasksTable(knex);
 }
 
