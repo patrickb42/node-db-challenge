@@ -22,16 +22,18 @@ export const basicTemplate = <T>({
     : db(tableName)
       .where('id', id)
       .first()
-      .then((data) => (data !== undefined ? processResult(data) : undefined)));
+      .then((data) => (data !== undefined ? processResult(data) : undefined))
+  );
 
 
   interface InsertArg {
     item: T,
   }
 
-  const insert = ({ item }: InsertArg) => db(tableName)
+  const insert = ({ item }: InsertArg) => (db(tableName)
     .insert(preprocessData(item))
-    .then(([id]) => get({ id }));
+    .then(([id]) => get({ id }))
+  );
 
 
   interface UpdateArg {
@@ -39,19 +41,21 @@ export const basicTemplate = <T>({
     changes: T,
   }
 
-  const update = ({ id, changes }: UpdateArg) => db(tableName)
+  const update = ({ id, changes }: UpdateArg) => (db(tableName)
     .where('id', id)
     .update(preprocessData(changes))
-    .then((count) => (count > 0 ? get({ id }) : null));
+    .then((count) => (count > 0 ? get({ id }) : null))
+  );
 
 
   interface RemoveArg {
     id: number,
   }
 
-  const remove = ({ id }: RemoveArg) => db(tableName)
+  const remove = ({ id }: RemoveArg) => (db(tableName)
     .where('id', id)
-    .del();
+    .del()
+  );
 
   return {
     get,
