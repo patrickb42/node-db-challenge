@@ -55,25 +55,25 @@ exports.basicTemplate = function (_a) {
     };
     var insert = function (_a) {
         var item = _a.item;
-        return dbConfig_1.default(tableName)
+        return (dbConfig_1.default(tableName)
             .insert(preprocessData(item))
             .then(function (_a) {
             var id = _a[0];
             return get({ id: id });
-        });
+        }));
     };
     var update = function (_a) {
         var id = _a.id, changes = _a.changes;
-        return dbConfig_1.default(tableName)
+        return (dbConfig_1.default(tableName)
             .where('id', id)
             .update(preprocessData(changes))
-            .then(function (count) { return (count > 0 ? get({ id: id }) : null); });
+            .then(function (count) { return (count > 0 ? get({ id: id }) : null); }));
     };
     var remove = function (_a) {
         var id = _a.id;
-        return dbConfig_1.default(tableName)
+        return (dbConfig_1.default(tableName)
             .where('id', id)
-            .del();
+            .del());
     };
     return {
         get: get,
