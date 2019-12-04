@@ -72,6 +72,10 @@ var makeProjectResourcePairingTable = function (knex) { return __awaiter(void 0,
                     .notNullable()
                     .references('id')
                     .inTable('resources');
+                tbl.primary([
+                    'project_id',
+                    'resource_id',
+                ]);
             })];
     });
 }); };

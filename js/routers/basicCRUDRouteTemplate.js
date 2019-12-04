@@ -60,4 +60,4 @@ exports.basicCRUDRouteTemplate = function (_a) {
     router.delete('/:id', del);
     return router;
 };
-exports.default = { basicCRUDRouteTemplate: exports.basicCRUDRouteTemplate };
+exports.default = {};

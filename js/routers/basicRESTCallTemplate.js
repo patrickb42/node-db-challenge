@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var basicRESTCallTemplate = function (_a) {
+exports.basicRESTCallTemplate = function (_a) {
     var dbOperation = _a.dbOperation, _b = _a.dbOperationArg, dbOperationArg = _b === void 0 ? {} : _b, operationFailed = _a.operationFailed, operationFailureCode = _a.operationFailureCode, operationFailureObject = _a.operationFailureObject, opperationSuccessCode = _a.opperationSuccessCode, operationErrorMessage = _a.operationErrorMessage;
     return function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
         var result, error_1;
@@ -61,4 +61,4 @@ var basicRESTCallTemplate = function (_a) {
         });
     }); };
 };
-exports.basicRESTCallTemplate = basicRESTCallTemplate;
+exports.default = {};
