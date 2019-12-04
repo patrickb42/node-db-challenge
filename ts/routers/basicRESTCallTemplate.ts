@@ -12,7 +12,7 @@ interface BasicRESTCallTemplateArg {
   operationErrorMessage: string,
 }
 
-const basicRESTCallTemplate = ({
+export const basicRESTCallTemplate = ({
   dbOperation,
   dbOperationArg = {},
   operationFailed,
@@ -34,4 +34,4 @@ const basicRESTCallTemplate = ({
   }
 };
 
-export { basicRESTCallTemplate };
+export default {};

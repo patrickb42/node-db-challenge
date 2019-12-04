@@ -1,9 +1,6 @@
-import * as Express from 'express';
-
 import { basicCRUDRouteTemplate } from './basicCRUDRouteTemplate';
 import { Projects } from '../data/models';
-import { validateProject } from '../middleware';
-import { verifyProjectId } from '../middleware';
+import { validateProject, verifyProjectId } from '../middleware';
 
 
 export const router = basicCRUDRouteTemplate({

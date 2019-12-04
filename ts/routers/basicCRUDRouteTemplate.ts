@@ -82,4 +82,4 @@ export const basicCRUDRouteTemplate = ({
   return router;
 };
 
-export default { basicCRUDRouteTemplate };
+export default {};

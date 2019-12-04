@@ -24,6 +24,7 @@ module.exports = {
         extensions: [
           '.js',
           '.ts',
+          '.d.ts',
         ],
       },
     },
