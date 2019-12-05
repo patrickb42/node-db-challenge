@@ -36,50 +36,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var dbConfig_1 = require("../dbConfig");
-exports.basicModelTemplate = function (_a) {
-    var tableName = _a.tableName, _b = _a.preprocessData, preprocessData = _b === void 0 ? function (data) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-        return [2 /*return*/, data];
-    }); }); } : _b, _c = _a.processResult, processResult = _c === void 0 ? function (result) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
-        return [2 /*return*/, result];
-    }); }); } : _c;
-    var get = function (_a) {
-        var id = (_a === void 0 ? {} : _a).id;
-        return ((id === undefined)
-            ? dbConfig_1.default(tableName)
-                .then(function (data) { return (data !== undefined ? data.map(processResult) : undefined); })
-            : dbConfig_1.default(tableName)
-                .where('id', id)
-                .first()
-                .then(function (data) { return (data !== undefined ? processResult(data) : undefined); }));
-    };
-    var insert = function (_a) {
-        var item = _a.item;
-        return (dbConfig_1.default(tableName)
-            .insert(preprocessData(item))
-            .then(function (_a) {
-            var id = _a[0];
-            return get({ id: id });
-        }));
-    };
-    var update = function (_a) {
-        var id = _a.id, changes = _a.changes;
-        return (dbConfig_1.default(tableName)
-            .where('id', id)
-            .update(preprocessData(changes))
-            .then(function (count) { return (count > 0 ? get({ id: id }) : null); }));
-    };
-    var remove = function (_a) {
-        var id = _a.id;
-        return (dbConfig_1.default(tableName)
-            .where('id', id)
-            .del());
-    };
-    return {
-        get: get,
-        insert: insert,
-        update: update,
-        remove: remove,
-    };
-};
+function seed(knex) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            return [2 /*return*/, knex('projects').insert([
+                    {
+                        id: 1,
+                        name: 'name 1',
+                        description: 'description 1',
+                        completed: false,
+                    },
+                    {
+                        name: 'name 2',
+                        description: 'description 2',
+                        completed: false,
+                    },
+                    {
+                        id: 3,
+                        name: 'name 3',
+                        description: 'description 3',
+                    },
+                    {
+                        name: 'name 4',
+                        description: 'description 4',
+                    },
+                    {
+                        id: 5,
+                        name: 'name 5',
+                        description: 'description 5',
+                        completed: true,
+                    },
+                    {
+                        name: 'name 6',
+                        description: 'description 6',
+                        completed: true,
+                    },
+                ])];
+        });
+    });
+}
+exports.seed = seed;
 exports.default = {};
