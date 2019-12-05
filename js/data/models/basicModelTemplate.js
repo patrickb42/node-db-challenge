@@ -56,7 +56,7 @@ exports.basicModelTemplate = function (_a) {
     var insert = function (_a) {
         var item = _a.item;
         return (dbConfig_1.default(tableName)
-            .insert(preprocessData(item))
+            .insert(preprocessData(item), 'id')
             .then(function (_a) {
             var id = _a[0];
             return get({ id: id });

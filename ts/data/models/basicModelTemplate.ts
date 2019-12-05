@@ -31,7 +31,7 @@ export const basicModelTemplate = <T>({
   }
 
   const insert = ({ item }: InsertArg) => (db(tableName)
-    .insert(preprocessData(item))
+    .insert(preprocessData(item), 'id')
     .then(([id]) => get({ id }))
   );
 

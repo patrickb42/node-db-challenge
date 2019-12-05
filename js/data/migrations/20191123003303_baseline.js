@@ -65,13 +65,16 @@ var makeProjectsResourcesTable = function (knex) { return __awaiter(void 0, void
                 tbl.integer('project_id')
                     .unsigned()
                     .notNullable()
-                    .references('id')
-                    .inTable('projects');
+                    .references('projects.id') // same as .references('id').inTable('projects')
+                    .onUpdate('CASCADE')
+                    .onDelete('CASCADE');
                 tbl.integer('resource_id')
                     .unsigned()
                     .notNullable()
                     .references('id')
-                    .inTable('resources');
+                    .inTable('resources')
+                    .onUpdate('CASCADE')
+                    .onDelete('CASCADE');
                 tbl.primary([
                     'project_id',
                     'resource_id',
@@ -87,7 +90,9 @@ var makeTasksTable = function (knex) { return __awaiter(void 0, void 0, void 0, 
                     .unsigned()
                     .notNullable()
                     .references('id')
-                    .inTable('projects');
+                    .inTable('projects')
+                    .onUpdate('CASCADE')
+                    .onDelete('CASCADE');
                 tbl.string('description', 1000)
                     .notNullable();
                 tbl.string('notes', 5000);
