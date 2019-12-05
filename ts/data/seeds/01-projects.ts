@@ -4,6 +4,7 @@ export async function seed(knex: Knex): Promise<any> {
   return knex('projects').insert([
     {
       id: 1, // the id is completely optional since this is an auto-incrementing key
+      // do not add ids if you are using postgres because it will prevent auto-incrementation
       name: 'name 1',
       description: 'description 1',
       completed: false, // completed is completely optional because it defaults to false
