@@ -69,9 +69,10 @@ export async function up(knex: Knex): Promise<any> {
 }
 
 export async function down(knex: Knex): Promise<any> {
-  return knex.schema
+  return (knex.schema
     .dropTableIfExists('tasks')
     .dropTableIfExists('project_resource_pairing')
     .dropTableIfExists('resources')
-    .dropTableIfExists('projects');
+    .dropTableIfExists('projects')
+  );
 }
