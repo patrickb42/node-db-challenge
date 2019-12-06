@@ -1,22 +1,26 @@
 import * as Knex from 'knex';
 
-const makeProjectsTable = async (knex: Knex) => knex.schema.createTable('projects', (tbl) => {
-  tbl.increments();
-  tbl.string('name', 128)
-    .notNullable();
-  tbl.string('description', 1000);
-  tbl.boolean('completed')
-    .defaultTo(false);
-});
+const makeProjectsTable = async (knex: Knex) => (knex
+  .schema.createTable('projects', (tbl) => {
+    tbl.increments();
+    tbl.string('name', 128)
+      .notNullable();
+    tbl.string('description', 1000);
+    tbl.boolean('completed')
+      .defaultTo(false);
+  })
+);
 
-const makeResourcesTable = async (knex: Knex) => knex.schema.createTable('resources', (tbl) => {
-  tbl.increments();
-  tbl.string('name', 128)
-    .notNullable();
-  tbl.string('description', 1000);
-});
+const makeResourcesTable = async (knex: Knex) => (knex
+  .schema.createTable('resources', (tbl) => {
+    tbl.increments();
+    tbl.string('name', 128)
+      .notNullable();
+    tbl.string('description', 1000);
+  })
+);
 
-const makeProjectsResourcesTable = async (knex: Knex) => knex
+const makeProjectsResourcesTable = async (knex: Knex) => (knex
   .schema.createTable('projects_resources', (tbl) => {
     tbl.integer('project_id')
       .unsigned()
@@ -35,23 +39,26 @@ const makeProjectsResourcesTable = async (knex: Knex) => knex
       'project_id',
       'resource_id',
     ]);
-  });
+  })
+);
 
-const makeTasksTable = async (knex: Knex) => knex.schema.createTable('tasks', (tbl) => {
-  tbl.increments();
-  tbl.integer('project_id')
-    .unsigned()
-    .notNullable()
-    .references('id')
-    .inTable('projects')
-    .onUpdate('CASCADE')
-    .onDelete('CASCADE');
-  tbl.string('description', 1000)
-    .notNullable();
-  tbl.string('notes', 5000);
-  tbl.boolean('completed')
-    .defaultTo(false);
-});
+const makeTasksTable = async (knex: Knex) => (knex
+  .schema.createTable('tasks', (tbl) => {
+    tbl.increments();
+    tbl.integer('project_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('projects')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
+    tbl.string('description', 1000)
+      .notNullable();
+    tbl.string('notes', 5000);
+    tbl.boolean('completed')
+      .defaultTo(false);
+  })
+);
 
 
 export async function up(knex: Knex): Promise<any> {
