@@ -1,6 +1,6 @@
 import { Project } from '../../types';
-import { basicModelTemplate } from './basicModelTemplate';
 import { convertObjectCamelToSnake, convertObjectSnakeToCamel } from '../../utils';
+import { basicModelTemplate } from './basicModelTemplate';
 
 export default basicModelTemplate<Project>({
   tableName: 'projects',
