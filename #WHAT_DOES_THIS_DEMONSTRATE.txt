@@ -1,0 +1,5 @@
+This example shows complex data mapping and how to make those tables in knex.
+It has seeds, migrations, config and knexfile
+The basicModelTemplate is outdated, look to another example for refinement
+basicRESTCallTemplate should not be used in other projects, it was an experiment that proved to make the code less flexible and more obfuscated
+basicCRUDFunctionsTemplate and basicCRUDRouteTemplate are good examples and should be used

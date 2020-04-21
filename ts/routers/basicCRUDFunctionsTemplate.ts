@@ -3,7 +3,7 @@ import * as Express from 'express';
 import { basicRESTCallTemplate } from './basicRESTCallTemplate';
 
 interface BasicCRUDRouteTemapleArg {
-  basicModel,
+  basicModel,; // this needs to be defined; don't leave this as 'any' for too long 
   itemName: string,
 }
 
