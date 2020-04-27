@@ -15,7 +15,8 @@ const makeResourcesTable = async (knex: Knex) => (knex
   .schema.createTable('resources', (tbl) => {
     tbl.increments();
     tbl.string('name', 128)
-      .notNullable();
+      .notNullable()
+      .unique();
     tbl.string('description', 1000);
   })
 );
