@@ -20,7 +20,7 @@ export const basicModelTemplate = <T>({
     ? db(tableName)
       .then((data) => (data !== undefined ? data.map(processResult) : undefined))
     : db(tableName)
-      .where('id', id)
+      .where('id', id) // this could also be .where({ id })
       .first()
       .then((data) => (data !== undefined ? processResult(data) : undefined))
   );
