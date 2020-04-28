@@ -6,7 +6,7 @@ export default basicModelTemplate<Project>({
   tableName: 'projects',
   preprocessData: (data) => convertObjectCamelToSnake({ obj: data }),
   processResult: (result) => ({
-    ...convertObjectSnakeToCamel({ obj: result }),
+    ...convertObjectSnakeToCamel<Project>({ obj: result }),
     completed: !!result.completed,
   }),
 });
